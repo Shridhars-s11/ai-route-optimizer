@@ -1,9 +1,10 @@
 from src.distance_matrix import load_locations,compute_distance_matrix
+from src.route_optimizer import solve_vrp
 
 data = load_locations("data/deliveries.csv")
 
-matrix = compute_distance_matrix(data)
+distance_matrix = compute_distance_matrix(data)
 
-print("Distance Matrix:")
-for row in matrix:
-    print(row) 
+route = solve_vrp(distance_matrix)
+
+print(f"Optimized Route order is: {route}")
