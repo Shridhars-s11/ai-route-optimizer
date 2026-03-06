@@ -6,4 +6,4 @@ matrix = compute_distance_matrix(data)
 
 print("Distance Matrix:")
 for row in matrix:
-    print(row)
+    print(row) 
