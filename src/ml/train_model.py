@@ -13,6 +13,9 @@ def train_model(data_path):
 
     X = pd.get_dummies(X)
 
+    feature_columns = X.columns
+    joblib.dump(feature_columns, "models/feature_columns.pkl")
+
     X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.2,random_state=42)
 
     model = LinearRegression()

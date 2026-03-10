@@ -8,24 +8,34 @@ def create_route_map(df, route):
     m = folium.Map(location=[center_lat, center_lon], zoom_start=12)
 
     # add markers
-    for idx, row in df.iterrows():
+    for order, stop in enumerate(route):
 
-        if idx == 0:
+        lat = df.iloc[stop]["latitude"]
+        lon = df.iloc[stop]["longitude"]
+
+        if order == 0:
             folium.Marker(
-                location=[row["latitude"], row["longitude"]],
+                location=[lat, lon],
                 popup="Warehouse",
                 icon=folium.Icon(color="red", icon="home")
             ).add_to(m)
+
         else:
             folium.Marker(
-                location=[row["latitude"], row["longitude"]],
-                popup=f"Stop {idx}",
+                location=[lat, lon],
+                popup=f"Stop {order}",
                 icon=folium.DivIcon(
                     html=f"""
-                    <div style="font-size: 12pt; color: white;
-                    background-color: blue; border-radius: 50%;
-                    width: 25px; height: 25px; text-align:center;">
-                    {idx}
+                    <div style="
+                    font-size:14px;
+                    color:white;
+                    background:blue;
+                    border-radius:50%;
+                    width:28px;
+                    height:28px;
+                    text-align:center;
+                    line-height:28px;">
+                    {order}
                     </div>
                     """
                 )
