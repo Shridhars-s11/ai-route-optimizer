@@ -452,7 +452,7 @@ with st.form("order_form"):
             }
 
             res = requests.post(
-                "http://127.0.0.1:8000/add-order",
+                "https://ai-logistics-backend.onrender.com/add-order",
                 json=payload
             )
 
@@ -573,7 +573,7 @@ st.map(data[["latitude", "longitude"]])
 if st.button("🚀 Optimize Routes"):
     payload = {"vehicles": int(num_vehicles), "locations": data.to_dict("records")}
 
-    response = requests.post("http://127.0.0.1:8000/optimize-routes", json=payload)
+    response = requests.post("https://ai-logistics-backend.onrender.com/optimize-routes", json=payload)
 
     if response.status_code == 200:
         st.session_state["result"] = response.json()
@@ -742,7 +742,7 @@ if "result" in st.session_state:
 
 try:
     response = requests.get(
-        "http://127.0.0.1:8000/download-routes",
+        "https://ai-logistics-backend.onrender.com/download-routes",
         timeout=10
     )
 
